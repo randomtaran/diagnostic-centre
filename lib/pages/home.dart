@@ -5,6 +5,8 @@ import 'package:laboratory/services/scraping.dart';
 import 'package:html/parser.dart';
 import 'package:http/http.dart';
 import 'package:laboratory/pages/compare_homescreen.dart';
+import 'package:simple_speed_dial/simple_speed_dial.dart';
+import 'package:laboratory/pages/tests_list.dart';
 
 final List<String> states = [
   'chandigarh',
@@ -64,14 +66,6 @@ class _HomePageState extends State<HomePage> {
                   )
                 ]
             ),),
-    Center(
-      child: Text('Testing Page \n :)',
-      style: TextStyle(
-        fontSize: 45,
-        fontFamily: 'Montserrat',
-        fontWeight: FontWeight.bold,
-      ),),
-    )
   ];
 
   void _onItemTapped(int index) {
@@ -82,7 +76,39 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: SpeedDial(
+        child: Icon(Icons.article_sharp),
+        labelsStyle: TextStyle(
+          fontFamily: 'Montserrat',
+          fontSize: 21,
+        ),
+        closedForegroundColor: Colors.black,
+        openForegroundColor: Colors.white,
+        closedBackgroundColor: Colors.white,
+        openBackgroundColor: Colors.black,
+        speedDialChildren: <SpeedDialChild>[
+          SpeedDialChild(
+            child: Icon(Icons.article_outlined),
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.red,
+            label: 'Lab Tests Available',
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> SelectLab()));
+            },
+            closeSpeedDialOnPressed: false,
+          ),
+          SpeedDialChild(
+            child: Icon(Icons.compare),
+            foregroundColor: Colors.black,
+            backgroundColor: Colors.yellow,
+            label: 'Compare Prices',
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> CompareHomeScreen()));
+            },
+          ),
+          //  Your other SpeedDialChildren go here.
+        ],
+      ),/*FloatingActionButton(
        onPressed: () {
          Navigator.push(context, MaterialPageRoute(builder: (context)=> CompareHomeScreen()));
        },
@@ -92,10 +118,10 @@ class _HomePageState extends State<HomePage> {
         elevation: 12,
         tooltip: 'Comparison',
         heroTag: 'taran',
-      ),
-      backgroundColor: Colors.lightGreenAccent[100],
+      )*/
+      backgroundColor: Colors.tealAccent[100],
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.teal,
         title: Text('Laboratory'),
         centerTitle: true,
         titleTextStyle: TextStyle(

@@ -1,11 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
 import 'package:html/dom.dart' as dom;
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:html/parser.dart' as parser;
-import 'package:http/http.dart' as http;
 import 'package:laboratory/pages/home.dart';
+import 'package:lottie/lottie.dart';
 late List<String> blogs = [];
 var cityref;
 class WebScrap extends StatefulWidget {
@@ -56,10 +56,10 @@ class _WebScrapState extends State<WebScrap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightGreenAccent[100],
+      backgroundColor: Colors.tealAccent[100],
       appBar: AppBar(
-        backgroundColor: Colors.green,
-        shadowColor: Colors.green[500],
+        backgroundColor: Colors.teal,
+        shadowColor: Colors.teal[500],
         title: Text('Labs',
         style: TextStyle(
           fontFamily: 'Montserrat',
@@ -107,10 +107,11 @@ class _WebScrapState extends State<WebScrap> {
                         children: [
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
                               primary: Colors.green,
                               elevation: 6,
                               onPrimary: Colors.white,
-                              shadowColor: Colors.blueAccent
+                              shadowColor: Colors.teal
                               ),
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
@@ -253,7 +254,7 @@ class _InfoScrapState extends State<InfoScrap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightGreenAccent[100],
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Lab Info',
             style: TextStyle(
@@ -287,8 +288,8 @@ class _InfoScrapState extends State<InfoScrap> {
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withOpacity(0.15),
-                              spreadRadius: 07,
-                              blurRadius: 07,
+                              spreadRadius: 09,
+                              blurRadius: 09,
                               offset: Offset(0, 0),
                             )
                           ],
@@ -297,7 +298,7 @@ class _InfoScrapState extends State<InfoScrap> {
                             color: Colors.lightGreen,
                             width: 0.5,
                           ),
-                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          borderRadius: BorderRadius.all(Radius.circular(25)),
                           gradient: LinearGradient(
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
@@ -306,39 +307,47 @@ class _InfoScrapState extends State<InfoScrap> {
 
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text('Timings',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 32.0,
-                                    letterSpacing: 1.5,
-                                    fontFamily: 'Montserrat'
-                                ),),
-                              SizedBox(height: 15),
-
+                          padding: const EdgeInsets.all(20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text('${_user?[0].substring(1,12)}',
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text('Timings',
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 21.0,
-                                        letterSpacing: 1.0,
+                                        fontSize: 32.0,
+                                        letterSpacing: 1.5,
                                         fontFamily: 'Montserrat'
                                     ),),
+                                  SizedBox(height: 15),
+
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text('${_user?[0].substring(1,12)}',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 21.0,
+                                            letterSpacing: 1.0,
+                                            fontFamily: 'Montserrat'
+                                        ),),
+                                    ],
+                                  ),
+
                                 ],
                               ),
-
+                              //Image(image: AssetImage('assets/time.png'))
+                              Lottie.network('https://assets8.lottiefiles.com/packages/lf20_9zrznuec.json')
                             ],
                           ),
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.03,
+                      height: MediaQuery.of(context).size.height * 0.04,
                     ),
                     Container(
                       width: 350,
@@ -357,7 +366,7 @@ class _InfoScrapState extends State<InfoScrap> {
                           color: Colors.lightGreen,
                           width: 0.5,
                         ),
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        borderRadius: BorderRadius.all(Radius.circular(25)),
                         gradient: LinearGradient(
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
@@ -366,38 +375,46 @@ class _InfoScrapState extends State<InfoScrap> {
 
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text('Price',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 32.0,
-                                  letterSpacing: 1.5,
-                                  fontFamily: 'Montserrat'
-                              ),),
-                            SizedBox(height: 15),
-
+                        padding: const EdgeInsets.all(20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('₹ ${_user?[1].substring(1,7)}',
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text('Price',
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 21.0,
-                                      letterSpacing: 1.0,
+                                      fontSize: 32.0,
+                                      letterSpacing: 1.5,
                                       fontFamily: 'Montserrat'
                                   ),),
+                                SizedBox(height: 15),
+
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text('₹ ${_user?[1].substring(1,7)}',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 21.0,
+                                          letterSpacing: 1.0,
+                                          fontFamily: 'Montserrat'
+                                      ),),
+                                  ],
+                                ),
+
                               ],
                             ),
-
+                            Lottie.network('https://assets5.lottiefiles.com/packages/lf20_WKOIej.json')
+                            //Image(image: AssetImage('assets/rupee.png'))
                           ],
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.03,
+                      height: MediaQuery.of(context).size.height * 0.04,
                     ),
                     Container(
                       child: Container(
@@ -417,7 +434,7 @@ class _InfoScrapState extends State<InfoScrap> {
                             color: Colors.lightGreen,
                             width: 0.5,
                           ),
-                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          borderRadius: BorderRadius.all(Radius.circular(25)),
                           gradient: LinearGradient(
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
@@ -426,38 +443,45 @@ class _InfoScrapState extends State<InfoScrap> {
 
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text('Contact No.',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 32.0,
-                                    letterSpacing: 1.5,
-                                    fontFamily: 'Montserrat'
-                                ),),
-                              SizedBox(height: 15),
-
+                          padding: const EdgeInsets.all(20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text('${_user?[2]}',
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text('Contact No.',
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 21.0,
-                                        letterSpacing: 1.0,
+                                        fontSize: 32.0,
+                                        letterSpacing: 1.5,
                                         fontFamily: 'Montserrat'
                                     ),),
+                                  SizedBox(height: 15),
+
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text('${_user?[2]}',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 21.0,
+                                            letterSpacing: 1.0,
+                                            fontFamily: 'Montserrat'
+                                        ),),
+                                    ],
+                                  ),
+
                                 ],
                               ),
-
+                              Lottie.network('https://assets3.lottiefiles.com/private_files/lf30_psxn1zju.json')
                             ],
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                     Container(
                       child: Container(
                         width: 350,
@@ -476,7 +500,7 @@ class _InfoScrapState extends State<InfoScrap> {
                             color: Colors.lightGreen,
                             width: 0.5,
                           ),
-                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          borderRadius: BorderRadius.all(Radius.circular(25)),
                           gradient: LinearGradient(
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
@@ -485,9 +509,10 @@ class _InfoScrapState extends State<InfoScrap> {
 
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(20),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text('Home Collection',
                                 style: TextStyle(
@@ -519,7 +544,7 @@ class _InfoScrapState extends State<InfoScrap> {
                   ],
                 ),
 
-                SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                 MaterialButton(
                   onPressed: () async {
 

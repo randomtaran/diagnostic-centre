@@ -36,6 +36,13 @@ dependencies:
   flutter_staggered_animations: ^1.0.0
   url_launcher: ^6.0.20
   beautiful_soup_dart: ^0.2.0
+  simple_speed_dial: ^0.1.5
+  liquid_pull_to_refresh: ^3.0.1
+  shimmer: ^2.0.0
+  firebase_core: ^1.15.0
+  firebase_auth: ^3.3.7
+  cloud_firestore: ^3.1.8
+  provider: ^6.0.2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -70,6 +77,27 @@ flutter:
     - assets/laboratory_icon.json
     - assets/compare.json
     - assets/Avatar.jpeg
+    - assets/healthians.jpg
+    - assets/max.jpg
+    - assets/trans-logo.png
+    - assets/drlal.jpg
+    - assets/companies.json
+    - assets/hospital.jpg
+    - assets/namaste.json
+    - assets/bmi.json
+    - assets/vaccine.json
+    - assets/radiology.json
+    - assets/comparison.json
+    - assets/labs.json
+    - assets/about.json
+    - assets/rupee.png
+    - assets/time.png
+    - assets/bg.png
+    - assets/images/bottom1.png
+    - assets/images/bottom2.png
+    - assets/images/main.png
+    - assets/images/top1.png
+    - assets/images/top2.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
