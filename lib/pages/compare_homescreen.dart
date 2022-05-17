@@ -29,7 +29,7 @@ class _CompareHomeScreenState extends State<CompareHomeScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.blueAccent,
         title: Text('Compare',
         style: TextStyle(
           color: Colors.white,
@@ -69,17 +69,17 @@ class _CompareHomeScreenState extends State<CompareHomeScreen> {
 
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: Colors.green, width: 0.1),
+                          borderSide: BorderSide(color: Colors.blueAccent, width: 0.1),
                         ),
                         border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.green, width: 0.1),
+                          borderSide: BorderSide(color: Colors.blueAccent, width: 0.1),
                           borderRadius: BorderRadius.circular(12)
                         ),
                         filled: true,
-                        fillColor: Colors.lightGreenAccent[100],
+                        fillColor: Colors.lightBlueAccent[100],
                       ),
                       validator: (value) => value == null ? "Select a country" : null,
-                      dropdownColor: Colors.lightGreenAccent[100],
+                      dropdownColor: Colors.lightBlueAccent[100],
                       value: selectedValue,
                     ),
                     SizedBox(height: 20,),
@@ -96,7 +96,7 @@ class _CompareHomeScreenState extends State<CompareHomeScreen> {
                           color: Colors.white
                       ),),
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.green,
+                        primary: Colors.blueAccent,
                         onPrimary: Colors.black,
                         shadowColor: Colors.black,
                         elevation: 5,
