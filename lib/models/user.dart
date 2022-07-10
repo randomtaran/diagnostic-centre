@@ -17,3 +17,5 @@ class UserData {
   UserData({required this.uid, required this.name, required this.age, required this.bmi, required this.isVaxxed});
 
 }
+
+//User Model used for CRUD of user data

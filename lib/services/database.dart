@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:laboratory/models/people.dart';
 import 'package:laboratory/models/user.dart';
 
+
+//code base for integration of cloud firestore with our Flutter app
 class DatabaseService {
 
   final String? uid;

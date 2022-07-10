@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:laboratory/pages/authenticate/authenticate.dart';
 import 'package:laboratory/models/user.dart';
 
+//state manager to check if user is still login or not
+
 class Wrapper extends StatelessWidget {
   const Wrapper({Key? key}) : super(key: key);
 

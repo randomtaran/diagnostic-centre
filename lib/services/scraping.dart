@@ -6,6 +6,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:laboratory/pages/home.dart';
 import 'package:lottie/lottie.dart';
+
+//RAdiology test , prices, timings, contact, home picking available or not screen
+
 late List<String> blogs = [];
 var cityref;
 class WebScrap extends StatefulWidget {

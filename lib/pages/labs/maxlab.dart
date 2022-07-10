@@ -1,15 +1,15 @@
-import 'package:laboratory/main.dart';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
 import 'package:html/dom.dart' as dom;
-import 'dart:convert';
-import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'dart:async';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter/src/material/colors.dart';
 late List<String> blogs = [' ',''];
 
+
+//codebase used to List tests available in Max Lab
 class MaxLab extends StatefulWidget {
   const MaxLab({Key? key}) : super(key: key);
 

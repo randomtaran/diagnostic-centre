@@ -7,3 +7,5 @@ class People{
 
   People({required this.name, required this.age, required this.bmi, required this.isVaxxed});
 }
+
+//Model used for Firebase integration

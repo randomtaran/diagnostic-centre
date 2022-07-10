@@ -4,6 +4,8 @@ import 'package:laboratory/components/background.dart';
 import 'package:laboratory/shared/constants.dart';
 import 'package:laboratory/shared/loading.dart';
 
+
+//Login Page
 class Login extends StatefulWidget {
 
   final Function toggleView;

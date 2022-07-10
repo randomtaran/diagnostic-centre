@@ -14,6 +14,9 @@ import 'package:firebase_core/firebase_core.dart';
 }
 ));*/
 
+
+//main.dart where our app starts executing
+
 void main() async {
 
     WidgetsFlutterBinding.ensureInitialized();

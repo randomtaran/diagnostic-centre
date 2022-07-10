@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+
+//Background used on Login and Registeration Page
 class Background extends StatelessWidget {
   final Widget child;
 

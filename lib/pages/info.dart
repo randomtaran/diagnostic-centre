@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laboratory/main.dart';
-import 'package:laboratory/pages/home.dart';
-import 'package:laboratory/services/scraping.dart';
+
+//About Us page
 
 class Bio extends StatefulWidget {
   const Bio({Key? key}) : super(key: key);

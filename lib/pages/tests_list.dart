@@ -7,6 +7,7 @@ import 'package:laboratory/pages/labs/healthians.dart';
 import 'package:laboratory/pages/labs/thyrocare.dart';
 import 'package:lottie/lottie.dart';
 
+//Unfinished code for comparison of prices of test among different labs
 class SelectLab extends StatefulWidget {
   const SelectLab({Key? key}) : super(key: key);
 

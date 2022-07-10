@@ -8,6 +8,10 @@ import 'package:laboratory/pages/compare_homescreen.dart';
 import 'package:simple_speed_dial/simple_speed_dial.dart';
 import 'package:laboratory/pages/tests_list.dart';
 
+
+//RAdiology TEst page
+
+
 var test=['Chandigarh', 'Delhi', 'Haryana', 'Punjab'];
 
 /*final Map<String, String> states = {

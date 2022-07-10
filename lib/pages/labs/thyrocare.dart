@@ -7,6 +7,8 @@ import 'package:shimmer/shimmer.dart';
 import 'package:flutter/src/material/colors.dart';
 late List<String> blogs = [' ',''];
 
+
+//codebase used to List tests available in Thyrocare Lab
 class ThyrocareLab extends StatefulWidget {
   const ThyrocareLab({Key? key}) : super(key: key);
 

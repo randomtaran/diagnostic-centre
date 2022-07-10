@@ -2,6 +2,8 @@ import 'package:laboratory/main.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+
+//automated code made by Firebase
 class FireAuth {
   static Future<User?> registerUsingEmailPassword({
     required String name,

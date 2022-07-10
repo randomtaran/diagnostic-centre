@@ -5,6 +5,8 @@ import 'package:html/parser.dart' as parser;
 import 'package:html/dom.dart' as dom;
 import 'dart:convert';
 
+
+//Unused code
 class SortedPage extends StatefulWidget {
 
   SortedPage({required this.selected_city});

@@ -10,6 +10,8 @@ import 'package:laboratory/services/database.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
+//Homepage you see after login/register
+
 class IntroPage extends StatefulWidget {
   const IntroPage({Key? key}) : super(key: key);
 

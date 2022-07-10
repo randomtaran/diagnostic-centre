@@ -5,6 +5,8 @@ import 'package:html/parser.dart' as parser;
 import 'package:html/dom.dart' as dom;
 import 'dart:convert';
 
+
+//Comparison Homescreen
 class CompareHomeScreen extends StatefulWidget {
   const CompareHomeScreen({Key? key}) : super(key: key);
 

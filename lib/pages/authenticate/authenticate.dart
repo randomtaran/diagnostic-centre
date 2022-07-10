@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:laboratory/pages/authenticate/login.dart';
 import 'package:laboratory/pages/authenticate/register.dart';
+
+//It is used to switch between register and login page
 class Authenticate extends StatefulWidget {
   const Authenticate({Key? key}) : super(key: key);
 

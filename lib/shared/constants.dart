@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//textInputDecoration used in different decorations
 const textInputDecoration = InputDecoration(
   //labelText: "Username",
   labelStyle: TextStyle(

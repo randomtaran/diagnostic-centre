@@ -3,10 +3,8 @@ import 'package:laboratory/services/auth.dart';
 import 'package:laboratory/components/background.dart';
 import 'package:laboratory/shared/constants.dart';
 import 'package:laboratory/shared/loading.dart';
-import 'package:laboratory/services/database.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:laboratory/models/people.dart';
 
+//REgister PAge
 class Register extends StatefulWidget {
   final Function toggleView;
   Register({required this.toggleView});
