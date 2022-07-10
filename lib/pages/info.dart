@@ -14,9 +14,9 @@ class _BioState extends State<Bio> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightGreenAccent[100],
+      backgroundColor: Colors.blue[100],
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.blueAccent,
         title : Text('About Me'),
         centerTitle: true,
         titleTextStyle: TextStyle(
@@ -39,7 +39,7 @@ class _BioState extends State<Bio> {
               ),
               Divider(
                 height: 60.0,
-                color: Colors.green,
+                color: Colors.blueAccent,
               ),
               Text(
                   'NAME',
@@ -53,7 +53,7 @@ class _BioState extends State<Bio> {
               Text(
                   'TARANJIT SINGH',
                   style: TextStyle(
-                    color: Colors.green,
+                    color: Colors.blueAccent,
                     letterSpacing: 2.0,
                     fontSize: 32.0,
                     fontWeight: FontWeight.bold,
@@ -73,7 +73,7 @@ class _BioState extends State<Bio> {
               Text(
                   'B.E Information Technology',
                   style: TextStyle(
-                    color: Colors.green,
+                    color: Colors.blueAccent,
                     letterSpacing: 2.0,
                     fontSize: 32.0,
                     fontWeight: FontWeight.bold,
@@ -91,7 +91,7 @@ class _BioState extends State<Bio> {
                     Text(
                         'ue208111.taranjit.it@gmail.com',
                         style: TextStyle(
-                          color: Colors.green,
+                          color: Colors.blueAccent,
                           fontSize: 15,
                           letterSpacing: 1.0,
                             fontFamily: 'Montserrat'

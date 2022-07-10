@@ -25,6 +25,8 @@ class _MaxLabState extends State<MaxLab> {
   //String result3 = 'Result 3';
   List<String>? result4 = [];
   List<String>? result5=[];
+  List<String>? result6=[];
+
   bool isLoading = true;
   bool _enabled = true;
 
@@ -117,7 +119,63 @@ class _MaxLabState extends State<MaxLab> {
 
         print(result5);
 
-        return prices!;
+        return prices;
+      }catch(e){
+        return ['error ${e}'];
+      }
+    } else{
+      return ['error'];
+    }
+
+  }
+
+  Future<List<String>?> extractMaxLink() async {
+    List<String> titles = [];
+    final response = await http.Client().get(Uri.parse('https://www.maxlab.co.in/lab-tests'));
+    if(response.statusCode == 200){
+      var document = parser.parse(response.body);
+      try {
+
+        for(int j=0;j<15;j++)
+        {
+          var resp=document.getElementsByClassName('checkup-box-head')[j];
+              //.children[1];
+          result6!.add(resp.text.toString());
+
+        }
+        //final taran = jsonDecode(response.body);
+        //print(taran);
+
+        //result4 = resp.text.toString();
+        print(result4);
+        //result1=jsonEncode(taran['checkup-box-head']);
+        /*var responseString1 = document
+            .getElementsByClassName('articles-list')[0]
+            .children[0]
+            .children[0]
+            .children[0];
+
+        print(responseString1.text.trim());
+
+        // Scraping the second article title
+        var responseString2 = document
+            .getElementsByClassName('articles-list')[0]
+            .children[1]
+            .children[0]
+            .children[0];
+
+        print(responseString2.text.trim());
+
+        // Scraping the third article title
+        var responseString3 = document
+            .getElementsByClassName('articles-list')[0]
+            .children[2]
+            .children[0]
+            .children[0];
+
+        print(responseString3.text.trim());*/
+
+        return result4!;
       }catch(e){
         return ['error ${e}'];
       }
@@ -269,73 +327,78 @@ class _MaxLabState extends State<MaxLab> {
                   final String item = _items[index];
                   return SlideTransition(
                     position: animation.drive(_offset),
-                    child: Container(
-                        width: 350,
-                        height: 125,
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.15),
-                              spreadRadius: 09,
-                              blurRadius: 09,
-                              offset: Offset(0, 0),
-                            )
-                          ],
-                          color: Colors.black,
-                          border: Border.all(
+                    child: InkWell(
+                      onTap: () {
+
+                      },
+                      child: Container(
+                          width: 350,
+                          height: 125,
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.15),
+                                spreadRadius: 09,
+                                blurRadius: 09,
+                                offset: Offset(0, 0),
+                              )
+                            ],
                             color: Colors.black,
-                            width: 0.5,
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 0.5,
+                            ),
+                            //borderRadius: BorderRadius.all(Radius.circular(25)),
+                            gradient: LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [Colors.blueAccent,Colors.blue]
+                            ),
+
                           ),
-                          //borderRadius: BorderRadius.all(Radius.circular(25)),
-                          gradient: LinearGradient(
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                              colors: [Colors.blueAccent!,Colors.blue!]
-                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(result1![index],
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 19.0,
+                                            letterSpacing: 1.5,
+                                            fontFamily: 'Montserrat'
+                                        ),),
+                                      SizedBox(height: 15),
 
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(result1![index],
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 19.0,
-                                          letterSpacing: 1.5,
-                                          fontFamily: 'Montserrat'
-                                      ),),
-                                    SizedBox(height: 15),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(result2![index],
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16.0,
+                                                letterSpacing: 1.0,
+                                                fontFamily: 'Montserrat'
+                                            ),),
+                                        ],
+                                      ),
 
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(result2![index],
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 16.0,
-                                              letterSpacing: 1.0,
-                                              fontFamily: 'Montserrat'
-                                          ),),
-                                      ],
-                                    ),
-
-                                  ],
-                                ),
-                                //Image(image: AssetImage('assets/time.png'))
-                                //Lottie.network('https://assets8.lottiefiles.com/packages/lf20_9zrznuec.json')
-                              ],
+                                    ],
+                                  ),
+                                  //Image(image: AssetImage('assets/time.png'))
+                                  //Lottie.network('https://assets8.lottiefiles.com/packages/lf20_9zrznuec.json')
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                    ),
                   );
                 },
               )

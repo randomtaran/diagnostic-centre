@@ -281,7 +281,7 @@ class _HealthiansLabState extends State<HealthiansLab> {
                     gradient: LinearGradient(
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
-                        colors: [Colors.teal!,Colors.tealAccent[700]!]
+                        colors: [Colors.teal,Colors.tealAccent[700]!]
                     ),
 
                   ),

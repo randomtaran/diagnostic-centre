@@ -1,18 +1,10 @@
-import 'package:laboratory/pages/home.dart';
 import 'package:flutter/material.dart';
-import 'package:laboratory/pages/sorted_screen.dart';
-import 'package:lottie/lottie.dart';
-import 'package:laboratory/services/scraping.dart';
+import 'package:animated_search_bar/animated_search_bar.dart';
+import 'package:http/http.dart' as http;
+import 'package:html/parser.dart' as parser;
+import 'package:html/dom.dart' as dom;
+import 'dart:convert';
 
-List<DropdownMenuItem<String>> get dropdownItems{
-  List<DropdownMenuItem<String>> menuItems = [
-    DropdownMenuItem(child: Text("Chandigarh"),value: "chandigarh"),
-    DropdownMenuItem(child: Text("Ambala"),value: "ambala"),
-    DropdownMenuItem(child: Text("Amritsar"),value: "amritsar"),
-    DropdownMenuItem(child: Text("Delhi"),value: "delhi"),
-  ];
-  return menuItems;
-}
 class CompareHomeScreen extends StatefulWidget {
   const CompareHomeScreen({Key? key}) : super(key: key);
 
@@ -22,13 +14,31 @@ class CompareHomeScreen extends StatefulWidget {
 
 class _CompareHomeScreenState extends State<CompareHomeScreen> {
 
-  String selectedValue = "chandigarh";
+  String searchText = " ";
+
+  Future<List<String>> searchData(String val) async {
+    final String searchUrl = 'https://www.maxlab.co.in/searchall';
+    Map<String, String> searchBody = {
+      "search" : "inter"
+    };
+
+    final response = await http.post(Uri.parse(searchUrl), body: searchBody);
+
+    if(response.statusCode == 200) {
+      final body = jsonDecode(response.body);
+      print(body);
+    }
+    return [" "," "];
+
+  }
+
   final _dropdownFormKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
+      /*appBar: AppBar(
         backgroundColor: Colors.blueAccent,
         title: Text('Compare',
         style: TextStyle(
@@ -39,89 +49,112 @@ class _CompareHomeScreenState extends State<CompareHomeScreen> {
           fontWeight: FontWeight.bold,
         ),),
         centerTitle: true,
-      ),
+      ),*/
       body:  Center(
               child: Form(
                 key: _dropdownFormKey,
                 child: Column(
-                  //mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      child: Lottie.asset('assets/compare.json'),
-                    ),
-                    SizedBox(height:16),
-                    DropdownButtonFormField(
-
-                        isDense: true,
-                        elevation: 10,
-                        style: TextStyle(
-                fontSize: 21,
-                    fontFamily: 'Montserrat',
-                    color: Colors.black
-                ),
-                        items: dropdownItems,
-                        onChanged: (String? newValue){
-                          setState(() {
-                            selectedValue=newValue!;
-                          });
-                    },
-                      decoration: InputDecoration(
-
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(color: Colors.blueAccent, width: 0.1),
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blueAccent, width: 0.1),
-                          borderRadius: BorderRadius.circular(12)
-                        ),
-                        filled: true,
-                        fillColor: Colors.lightBlueAccent[100],
-                      ),
-                      validator: (value) => value == null ? "Select a country" : null,
-                      dropdownColor: Colors.lightBlueAccent[100],
-                      value: selectedValue,
-                    ),
-                    SizedBox(height: 20,),
-                    ElevatedButton(
-                      onPressed: () async{
-                          var selected_city=selectedValue;
-                          await Navigator.push(context, MaterialPageRoute(builder: (context)=> SortedPage(selected_city:selected_city)));
-
+                    SizedBox(height: size.height * 0.02),
+                    IconButton(
+                      iconSize: 36,
+                      alignment: Alignment.topLeft,
+                      onPressed: (){
+                        Navigator.pop(context);
                       },
-                      child: Text("Submit",
-                      style: TextStyle(
-                          fontSize: 32,
-                          fontFamily: 'Montserrat',
-                          color: Colors.white
-                      ),),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.blueAccent,
-                        onPrimary: Colors.black,
-                        shadowColor: Colors.black,
-                        elevation: 5,
+                      icon: Icon(Icons.arrow_back),
+                      color: Colors.blueAccent,
+                    ),
+                    Row(
+                      mainAxisAlignment : MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            color: Colors.white,
+                            child: Text(' Hello!\n\n Compare\n Lab\n Test\n Prices.\n',
+                              style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 34.0,
+                                letterSpacing: 1.0,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w900,
+                              ),),
+                          ),
+                        ),
+                        Expanded(
+                          child: Image(
+                            image: AssetImage('assets/nurse.jpg'),
+
+                          ),
+                        )
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: DecoratedBox(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Here you can check price of a particular lab test across the Different labs available',style: TextStyle(
+                            color: Colors.black54,
+                            fontSize: 19.0,
+                            letterSpacing: 1.0,
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w400,
+                          ),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(7)),
+                          image: DecorationImage(
+                            opacity: 0.44,
+                            fit: BoxFit.cover,
+                            image: AssetImage('assets/bg-hosp.png'),
+                          ),
+                          boxShadow: [
+                             //BoxShadow
+                          ],
+                          //color: Colors.tealAccent.shade100
+                        ),
                       ),
-                    )
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: AnimatedSearchBar(
+                        searchStyle: TextStyle(
+                          color: Colors.black87,
+                          fontSize: 21.0,
+                          letterSpacing: 1.5,
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w400,
+                        ),
+                        label: "Enter Test Name Here",
+                        labelStyle: TextStyle(
+                          color: Colors.black87,
+                          fontSize: 19.0,
+                          letterSpacing: 1.0,
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w400,
+                        ),
+                        onChanged: (val){
+                          print("$val on Change");
+                          Future<List<String>> d=searchData(val);
+                          print(d);
+                          setState(() {
+                            searchText = val;
+                          });
+                        },
+                      ),
+                    ),
+                    ElevatedButton(onPressed: (){
+                      searchData("inter");
+                    }, child: Icon(Icons.ac_unit))
                   ],
                 )
               )
-
-
-              /*DropdownButton(
-                items: dropdownItems,
-                value: selectedValue,
-                style: TextStyle(
-                    fontSize: 32,
-                    fontFamily: 'Montserrat',
-                    color: Colors.black
-                ),
-                dropdownColor: Colors.green,
-                onChanged: (String? newValue){
-                  setState(() {
-                    selectedValue=newValue!;
-                  });
-                },
-              )*/
 
       ),
       );

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:laboratory/services/auth.dart';
 import 'package:laboratory/components/background.dart';
+import 'package:laboratory/shared/constants.dart';
+import 'package:laboratory/shared/loading.dart';
 
 class Login extends StatefulWidget {
 
@@ -15,7 +17,7 @@ class _LoginState extends State<Login> {
 
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
-
+  bool loading = false;
   //text field state
 
   String email=' ';
@@ -24,38 +26,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     Size size=MediaQuery.of(context).size;
-    return Scaffold(
-      //backgroundColor: Colors.tealAccent[100],
-      /*appBar: AppBar(
-        backgroundColor: Colors.teal[900],
-        elevation: 0.0,
-        title: Text('SignIn to Laboratory'),
-        titleTextStyle: TextStyle(
-            color: Colors.white,
-            fontSize: 15.0,
-            letterSpacing: 2.0,
-            fontFamily: 'Montserrat',
-            fontWeight: FontWeight.bold
-        ),
-        actions: <Widget>[
-          TextButton.icon(
-            style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.teal[900]!),
-                splashFactory: InkSplash.splashFactory
-            ),
-            icon: Icon(Icons.person,
-              color: Colors.white,),
-            label: Text('Register',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-            onPressed: () {
-              widget.toggleView();
-            },
-          )
-        ],
-      ),*/
+    return loading ? Loading() : Scaffold(
       body: Form(
         key: _formKey,
         child: Background(
@@ -88,7 +59,8 @@ class _LoginState extends State<Login> {
                   onChanged: (val) {
                     setState(()=>email=val);
                   },
-                  decoration: InputDecoration(
+                  decoration: textInputDecoration.copyWith(labelText: "Username"),
+                  /*InputDecoration(
                       labelText: "Username",
                       labelStyle: TextStyle(
                           color: Colors.black45,
@@ -97,7 +69,15 @@ class _LoginState extends State<Login> {
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.bold
                       ),
-                  ),
+                    //fillColor: Colors.white54,
+                    //filled: true,
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.transparent, width: 2.0)
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blueAccent, width: 2.0)
+                    ),
+                  ),*/
                 ),
               ),
 
@@ -111,7 +91,8 @@ class _LoginState extends State<Login> {
                   onChanged: (val) {
                     setState(()=>password=val);
                   },
-                  decoration: InputDecoration(
+                  decoration: textInputDecoration.copyWith(labelText: "Password"),
+                  /*InputDecoration(
                       labelText: "Password",
                       labelStyle: TextStyle(
                           color: Colors.black45,
@@ -120,7 +101,15 @@ class _LoginState extends State<Login> {
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.bold
                       ),
-                  ),
+                     // fillColor: Colors.white54,
+                      //filled: true,
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.transparent, width: 2.0)
+                      ),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blueAccent, width: 2.0)
+                    ),
+                  ),*/
                   obscureText: true,
                 ),
               ),
@@ -152,10 +141,16 @@ class _LoginState extends State<Login> {
                 child: RaisedButton(
                   onPressed: () async{
                     if(_formKey.currentState!.validate()){
+                      setState(() {
+                        loading = true;
+                      });
                       dynamic result = await _auth.signInWithEmailAndPassword(email, password);
 
                       if(result==null) {
-                        setState(() => error = '''can't login with provided credentials''');
+                        setState(() {
+                          error = '''can't login with provided credentials''';
+                          loading = false;
+                        });
                       }
                     }
                   },
@@ -214,125 +209,7 @@ class _LoginState extends State<Login> {
             ],
           ),
         ),
-      ),/*Column(
-        children: [
-          SizedBox(height: 38,),
-          CustomPaint(
-            painter: RPS(),
-            child: Container(
-                //height: 200,
-                child: Center(
-                  child: Text('SignIn to Laboratory',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 34.0,
-                      letterSpacing: 2.0,
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.bold
-                  ),),
-                ),
-              ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
-            child: Form(
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(height: 20.0),
-                    TextFormField(
-                      onChanged: (val) {
-                        setState(()=>email=val);
-                      },
-                    ),
-                    SizedBox(height: 20.0),
-                    TextFormField(
-                      obscureText: true,
-                      onChanged: (val) {
-                        setState(()=>password=val);
-                      },
-                    ),
-                    SizedBox(height: 20.0),
-                    RaisedButton(
-                      color: Colors.teal,
-                      child: Text(
-                        'Sign in',
-                        style: TextStyle(
-                            color: Colors.white
-                        ),
-                      ),
-                      onPressed: () async{
-                        print(email);
-                        print(password);
-                      },
-                    ),
-                  ],
-                )
-            ),
-          ),
-        ],
-      ),*/
+      ),
     );
   }
 }
-
-
-/*class CustomClipPath extends CustomClipper<Path>{
-  @override
-  Path getClip(Size size){
-    double w=size.width;
-    double h=size.height;
-
-    final path=Path();
-
-    path.moveTo(0, 100);
-    path.lineTo(0, h);
-    path.quadraticBezierTo(
-      w*0.5,
-      h-100,
-      w,
-      h
-    );
-    path.lineTo(w, 0);
-    path.close();
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper){
-    return false;
-  }
-}*/
-
-class RPS extends CustomPainter{
-
-
-  @override
-  void paint(Canvas canvas, Size size) {
-
-
-
-    Paint paint0 = Paint()
-      ..color = const Color.fromARGB(255, 33, 150, 243)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1;
-
-
-    Path path0 = Path();
-    path0.moveTo(size.width*0.0008333,size.height*0.1100000);
-    path0.quadraticBezierTo(size.width*0.0429167,size.height*0.1328571,size.width*0.0825000,size.height*0.0014286);
-    path0.quadraticBezierTo(size.width*0.2289583,size.height*-0.0114286,size.width*0.2708333,0);
-    path0.cubicTo(size.width*0.2504167,size.height*0.2410714,size.width*0.1504167,size.height*0.1560714,size.width*0.1450000,size.height*0.3485714);
-    path0.quadraticBezierTo(size.width*0.0539583,size.height*0.4064286,size.width*0.0008333,size.height*0.2714286);
-    path0.quadraticBezierTo(size.width*0.0006250,size.height*0.0825000,size.width*0.0008333,size.height*0.1100000);
-    path0.close();
-
-    canvas.drawPath(path0, paint0);
-
-
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
-  }}

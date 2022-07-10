@@ -109,7 +109,7 @@ class _ThyrocareLabState extends State<ThyrocareLab> {
 
         print(result5);
 
-        return prices!;
+        return prices;
       }catch(e){
         return ['error ${e}'];
       }
@@ -262,7 +262,7 @@ class _ThyrocareLabState extends State<ThyrocareLab> {
                     gradient: LinearGradient(
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
-                        colors: [Colors.red!,Colors.redAccent!]
+                        colors: [Colors.red,Colors.redAccent]
                     ),
 
                   ),

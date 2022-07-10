@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:laboratory/services/auth.dart';
 import 'package:laboratory/components/background.dart';
+import 'package:laboratory/shared/constants.dart';
+import 'package:laboratory/shared/loading.dart';
+import 'package:laboratory/services/database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:laboratory/models/people.dart';
+
 class Register extends StatefulWidget {
   final Function toggleView;
   Register({required this.toggleView});
@@ -9,8 +15,26 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
+
+  //Testing
+  /*Map? data;
+  String name='';
+  List? documents;
+  fetchData(){
+    CollectionReference peopleCollection = FirebaseFirestore.instance.collection('people');
+    peopleCollection.snapshots().listen((snapshot) {
+
+
+      setState(() {
+        documents = snapshot.docs;
+      });
+      print(documents);
+    });
+  }*/
 
   //text field state
   String email=' ';
@@ -20,29 +44,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     Size size=MediaQuery.of(context).size;
-    return Scaffold(
-      //backgroundColor: Colors.tealAccent[100],
-      /*appBar: AppBar(
-        backgroundColor: Colors.teal[900],
-        elevation: 0.0,
-        title: Text('SignUp to radchads'),
-        actions: <Widget>[
-          TextButton.icon(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.teal[900]!),
-            ),
-            icon: Icon(Icons.person,
-              color: Colors.white,),
-            label: Text('Sign-In',
-              style: TextStyle(
-                color: Colors.white,
-              ),),
-            onPressed: () {
-              widget.toggleView();
-            },
-          )
-        ],
-      ),*/
+    return loading ? Loading() : Scaffold(
       body: Form(
         key: _formKey,
         child: Background(
@@ -76,16 +78,7 @@ class _RegisterState extends State<Register> {
                   onChanged: (val) {
                     setState(()=>email=val);
                   },
-                  decoration: InputDecoration(
-                    labelText: "Username",
-                    labelStyle: TextStyle(
-                        color: Colors.black45,
-                        fontSize: 21.0,
-                        letterSpacing: 1.0,
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.bold
-                    ),
-                  ),
+                  decoration: textInputDecoration.copyWith(labelText: "Username"),
                 ),
               ),
 
@@ -99,34 +92,11 @@ class _RegisterState extends State<Register> {
                   onChanged: (val) {
                     setState(()=>password=val);
                   },
-                  decoration: InputDecoration(
-                    labelText: "Password",
-                    labelStyle: TextStyle(
-                        color: Colors.black45,
-                        fontSize: 21.0,
-                        letterSpacing: 1.0,
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.bold
-                    ),
-                  ),
+                  decoration: textInputDecoration.copyWith(labelText: "Password"),
                   obscureText: true,
                 ),
               ),
 
-              /*Container(
-                alignment: Alignment.centerRight,
-                margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-                child: Text(
-                  "Forgot your password?",
-                  style: TextStyle(
-                    color: Colors.teal,
-                    fontSize: 15.0,
-                    letterSpacing: 1.0,
-                    fontFamily: 'Montserrat',
-                    //fontWeight: FontWeight.bold
-                  ),
-                ),
-              ),*/
 
               SizedBox(height: 3.0,),
 
@@ -141,9 +111,15 @@ class _RegisterState extends State<Register> {
                 child: RaisedButton(
                   onPressed: () async{
                     if(_formKey.currentState!.validate()){
+                      setState(() {
+                        loading = true;
+                      });
                       dynamic result = await _auth.registerWithEmailAndPassword(email, password);
                       if(result==null) {
-                        setState(() => error = 'please enter a valid email');
+                        setState(() {
+                          error = 'please enter a valid email';
+                          loading = false;
+                        });
                       }
                     }
                   },
@@ -154,9 +130,9 @@ class _RegisterState extends State<Register> {
                     alignment: Alignment.center,
                     height: 50.0,
                     width: size.width * 0.5,
-                    decoration: new BoxDecoration(
+                    decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(80.0),
-                        gradient: new LinearGradient(
+                        gradient: LinearGradient(
                             colors: [
                               Colors.blueAccent,
                               Colors.blueAccent
@@ -203,42 +179,6 @@ class _RegisterState extends State<Register> {
           ),
         ),
       )
-      /*Container(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
-        child: Form(
-            child: Column(
-              children: <Widget>[
-                SizedBox(height: 20.0),
-                TextFormField(
-                  onChanged: (val) {
-                    setState(()=>email=val);
-                  },
-                ),
-                SizedBox(height: 20.0),
-                TextFormField(
-                  obscureText: true,
-                  onChanged: (val) {
-                    setState(()=>password=val);
-                  },
-                ),
-                SizedBox(height: 20.0),
-                RaisedButton(
-                  color: Colors.teal,
-                  child: Text(
-                    'Register',
-                    style: TextStyle(
-                        color: Colors.white
-                    ),
-                  ),
-                  onPressed: () async{
-                    print(email);
-                    print(password);
-                  },
-                ),
-              ],
-            )
-        ),
-      ),*/
     );
   }
 }

@@ -92,7 +92,7 @@ class _LalpathLabState extends State<LalpathLab> {
 
         print(responseString3.text.trim());*/
 
-        return prices!;
+        return prices;
       }catch(e){
         return ['error ${e}'];
       }
@@ -129,7 +129,7 @@ class _LalpathLabState extends State<LalpathLab> {
 
         print(result4);
 
-        return prices!;
+        return prices;
       }catch(e){
         return ['error ${e}'];
       }
@@ -361,7 +361,7 @@ class _LalpathLabState extends State<LalpathLab> {
                     gradient: LinearGradient(
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
-                        colors: [Colors.blueAccent!,Colors.blue!]
+                        colors: [Colors.blueAccent,Colors.blue]
                     ),
 
                   ),

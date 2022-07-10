@@ -8,12 +8,20 @@ import 'package:laboratory/pages/compare_homescreen.dart';
 import 'package:simple_speed_dial/simple_speed_dial.dart';
 import 'package:laboratory/pages/tests_list.dart';
 
+var test=['Chandigarh', 'Delhi', 'Haryana', 'Punjab'];
+
+/*final Map<String, String> states = {
+  'Chandigarh': 'chandigarh',
+  'Delhi': 'delhi-ncr',
+  'Haryana': 'haryana',
+  'Punjab': 'punjab'
+};
+ */
 final List<String> states = [
   'chandigarh',
   'delhi-ncr',
   'haryana',
-  'punjab',
-
+  'punjab'
 ];
 
 final List<String> cities = [
@@ -42,7 +50,7 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (context, index) =>
             ExpansionTile(
                 leading: Icon(filter_list),
-                title: Text('${states[index].toUpperCase()}',
+                title: Text(test[index],
                   style: TextStyle(
                     fontFamily: 'Montserrat',
                     fontSize: 21,
@@ -61,7 +69,7 @@ class _HomePageState extends State<HomePage> {
                         result2 = response[1];
                         result3 = response[2];*/
                         i=index;
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> WebScrap(states: cities, cities: cities, i: i)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> WebScrap(states: cities, cities: cities, i: i, test: test)));
                     },
                   )
                 ]
@@ -119,9 +127,9 @@ class _HomePageState extends State<HomePage> {
         tooltip: 'Comparison',
         heroTag: 'taran',
       )*/
-      backgroundColor: Colors.tealAccent[100],
+      backgroundColor: Colors.blue[100],
       appBar: AppBar(
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.blueAccent,
         title: Text('Laboratory'),
         centerTitle: true,
         titleTextStyle: TextStyle(
@@ -143,7 +151,7 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (context, index) =>
             ExpansionTile(
                 leading: Icon(filter_list),
-                title: Text('${states[index]}',
+                title: Text(test[index],
                   style: TextStyle(
                     fontFamily: 'Montserrat',
                     fontSize: 21,
@@ -162,7 +170,7 @@ class _HomePageState extends State<HomePage> {
                         result2 = response[1];
                         result3 = response[2];*/
                       i=index;
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> WebScrap(states: [], cities: [], i: [])));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> WebScrap(states: [], cities: [], i: [], test: [])));
                     },
                   )
                 ]
@@ -219,7 +227,7 @@ class DataSearch extends SearchDelegate<String>{
     return ListView.builder(itemBuilder: (context, index) => ListTile(
       onTap: () async{
         var i=index;
-        Navigator.push(context, MaterialPageRoute(builder: (context)=> WebScrap(states: [], cities: [], i: [])));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> WebScrap(states: [], cities: [], i: [], test: [],)));
       },
       leading: Icon(Icons.location_city),
       title: RichText(text: TextSpan(

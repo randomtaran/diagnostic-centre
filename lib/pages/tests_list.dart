@@ -28,7 +28,7 @@ class _SelectLabState extends State<SelectLab> {
             fontWeight: FontWeight.bold,
           ),),
         centerTitle: true,
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.blueAccent,
 
       ),
       body: ListView(

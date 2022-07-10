@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:laboratory/pages/intro.dart';
-import 'package:laboratory/pages/home.dart';
-import 'package:laboratory/pages/authenticate/login.dart';
 import 'package:laboratory/pages/wrapper.dart';
 import 'package:provider/provider.dart';
 import 'package:laboratory/models/user.dart';
 import 'package:laboratory/services/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+//import 'firebase_options.dart';
 /*void main() => runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
   initialRoute: '/',
@@ -16,11 +14,12 @@ import 'package:firebase_core/firebase_core.dart';
 }
 ));*/
 
-
-
 void main() async {
+
     WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp();
+    await Firebase.initializeApp(
+       // options: DefaultFirebaseOptions.currentPlatform,
+    );
     runApp(MyApp());
 }
 

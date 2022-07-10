@@ -13,8 +13,9 @@ class WebScrap extends StatefulWidget {
   final List<String> states;
   final List<String> cities;
   var i;
+  var test;
 
-  WebScrap({required this.states, required this.cities, required this.i});
+  WebScrap({required this.states, required this.cities, required this.i, required this.test});
 
   @override
   _WebScrapState createState() => _WebScrapState();
@@ -26,21 +27,28 @@ class _WebScrapState extends State<WebScrap> {
   //late List<String> blogs = [];
 
   Future<List<String>> extractData() async {
+    //print(widget.states);
     List<String> titles = [];
+    List<String> titles2 = [];
     var state = states[i];
     var city = cities[i];
     final response = await http.Client().get(Uri.parse('https://www.lalpathlabs.com/$state/$city'));
     if(response.statusCode == 200){
       var doc = parser.parse(response.body);
       try {
-        for (int i = 1; i < 18; i++) {
+        for (int i = 1; i < 15; i++) {
           //if (i == 3 || i == 2) continue;
 
           var resp1 = doc.getElementsByClassName('secBox')[i]
           .children[0];
           titles.add(resp1.text.toString());
           cityref=titles;
-          //print(state);
+
+          var resp2 = doc.getElementsByClassName('nameBox')[i]
+          .children[0];
+          titles2.add(resp2.text.toString());
+
+          print(resp2);
         }
 
         //print(cityref);
@@ -56,10 +64,10 @@ class _WebScrapState extends State<WebScrap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.tealAccent[100],
+      backgroundColor: Colors.blue[100],
       appBar: AppBar(
-        backgroundColor: Colors.teal,
-        shadowColor: Colors.teal[500],
+        backgroundColor: Colors.blueAccent,
+        shadowColor: Colors.blue[500],
         title: Text('Labs',
         style: TextStyle(
           fontFamily: 'Montserrat',
@@ -107,11 +115,11 @@ class _WebScrapState extends State<WebScrap> {
                         children: [
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
-                              primary: Colors.green,
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7.0)),
+                              primary: Colors.blueAccent,
                               elevation: 6,
                               onPrimary: Colors.white,
-                              shadowColor: Colors.teal
+                              shadowColor: Colors.blue
                               ),
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
