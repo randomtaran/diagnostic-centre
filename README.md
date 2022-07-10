@@ -68,3 +68,9 @@ https://user-images.githubusercontent.com/79708471/178157863-1ee27a7a-e0e5-448f-
 Lab Details 
 
 https://user-images.githubusercontent.com/79708471/178157923-14afcde5-1b69-42ce-9885-c3f93e93fae3.mp4
+
+
+Hospital Companies Tests
+
+https://user-images.githubusercontent.com/79708471/178158605-2a8b5b0a-1253-4ce4-80af-3802c8897ad8.mp4
+
