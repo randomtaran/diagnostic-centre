@@ -38,25 +38,27 @@ samples, guidance on mobile development, and a full API reference.
    ##Screenshots
    
    Intro Page or Home Page
-   ![intross](https://user-images.githubusercontent.com/79708471/178157600-c02b3cdd-f07d-45db-9720-f362c6818663.png)
+   
+   <img src="https://user-images.githubusercontent.com/79708471/178157600-c02b3cdd-f07d-45db-9720-f362c6818663.png" width="400">
 
    Drawer
-![drawer ss](https://user-images.githubusercontent.com/79708471/178157613-6ce80846-c705-4cef-ba35-41184c08086f.png)
+
+   <img src="https://user-images.githubusercontent.com/79708471/178157613-6ce80846-c705-4cef-ba35-41184c08086f.png" width="400">
 
   User Details settings    
-![settingformss](https://user-images.githubusercontent.com/79708471/178157619-8cddceee-509d-4230-9cc4-458a76cf3a0f.png)
-
-  Hospital Companies
-![list of companies labs](https://user-images.githubusercontent.com/79708471/178157632-246142ed-dad2-46c6-a562-fe7540e60ea0.png)
-
-
-
-
-![Screenshot_20220711-000606_laboratory](https://user-images.githubusercontent.com/79708471/178157833-f6eff054-a0db-4d63-80d8-f234fe4fad61.png)
-
-
+  
+   <img src="https://user-images.githubusercontent.com/79708471/178157619-8cddceee-509d-4230-9cc4-458a76cf3a0f.png" width="400">
    
-   ![list of citites ss](https://user-images.githubusercontent.com/79708471/178157839-7b28b7e6-4691-483f-a402-a47dc88e98ef.png)
+  Hospital Companies
+
+   <img src="https://user-images.githubusercontent.com/79708471/178157632-246142ed-dad2-46c6-a562-fe7540e60ea0.png" width="400">
+   
+
+   <img src="https://user-images.githubusercontent.com/79708471/178157833-f6eff054-a0db-4d63-80d8-f234fe4fad61.png" width="400">
+   
+
+   <img src="https://user-images.githubusercontent.com/79708471/178157839-7b28b7e6-4691-483f-a402-a47dc88e98ef.png" width="400">
+   
    
 ##Videos   
 
